@@ -38,40 +38,61 @@ public class Registro {
                         + "8.-SALIR\n¿QUE DESEA REALIZAR?", "AGENDA TELEFONICA", 3));
                 switch (op) {
                     case 1: {
-
+                        nombre = JOptionPane.showInputDialog(null, "Introduce el nombre", "Introduciendo Nombre", 1);
+                        telefono = Integer.parseInt(JOptionPane.showInputDialog(null, "Introduce el numero telefonico", "Introduciendo numero telefonico", 1));
+                        c = new Contacto(nombre, telefono);
+                        agenda.agregarContacto(c);
                         break;
                     }
                     case 2: {
-
+                        agenda.mostrarContactos();
                         break;
                     }
                     case 3: {
-
+                        nombre = JOptionPane.showInputDialog(null, "Introduce el nombre", "Buscando contacto", 1);
+                        agenda.buscarContacto(nombre);
                         break;
                     }
                     case 4: {
-
+                        nombre = JOptionPane.showInputDialog(null, "Introduce el nombre", "Comprobando contacto", 1);
+                        c = new Contacto(nombre);
+                        if (agenda.comprobarNombre(c)) {
+                            JOptionPane.showMessageDialog(null, "El contacto si existe en tu agenda", "Comprobando", 1);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "El contacto NO existe en tu agenda", "Comprobando", 0);
+                        }
                         break;
                     }
                     case 5: {
-
+                        nombre = JOptionPane.showInputDialog(null, "Introduce el nombre", "Eliminando Contacto", 1);
+                        c = new Contacto(nombre);
+                        agenda.eliminarContacto(c);
                         break;
                     }
                     case 6: {
-
+                        int n = agenda.comprobarEspacios();
+                        JOptionPane.showMessageDialog(null, "Espacios disponibles en la agenda: " + n, "Espacios libres", 1);
                         break;
                     }
                     case 7: {
+                        int n = agenda.comprobarEspacios();
+                        if (n >= 0) {
+                            JOptionPane.showMessageDialog(null, "Agenda con espacios" , "Espacios libres", 1);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Agenda Llena" , "Agenda llena", 0);
 
+                        }
                         break;
                     }
                     case 8: {
+                        JOptionPane.showMessageDialog(null, "CERRANDO PROGRAMA", "SALIENDO", 2);
 
                         break;
                     }
-                    default:{
-                    
-                    break;}
+                    default: {
+                        JOptionPane.showMessageDialog(null, "Por favor vuelva a digitar", "Error", 0);
+                        break;
+                    }
                 }
 
             } catch (NumberFormatException e) {
